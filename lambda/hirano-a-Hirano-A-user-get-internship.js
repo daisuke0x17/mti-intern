@@ -15,7 +15,12 @@ exports.handler = (event, context, callback) => {
   const userId = event.queryStringParameters.userId; //見たいユーザのuserId
 
   //TODO: 取得対象のテーブル名と検索に使うキーをparamに宣言
-  const param = {};
+  const param = {
+    "TableName":tableName,
+    "Key":{
+      "userId":userId
+    }
+  };
 
   //dynamo.get()でDBからデータを取得
   dynamo.get(param, function (err, data) {
@@ -29,9 +34,14 @@ exports.handler = (event, context, callback) => {
       callback(null, response);
       return;
     }
-
-    //TODO: 条件に該当するデータがあればパスワードを隠蔽をする処理を記述
-
+    else{
+      //TODO: 条件に該当するデータがあればパスワードを隠蔽をする処理を記述
+      delete data.Item.password;
+      response.body = JSON.stringify(data);
+      callback(null, response);
+      return;
     //TODO: レスポンスボディの設定とコールバックを記述
+    }
+    
   });
 };

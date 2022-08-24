@@ -8,9 +8,9 @@ exports.handler = (event, context, callback) => {
   };
 
   //TODO: 変数rbodyにリクエストボディのJavaScriptオブジェクトを代入してください。
-
+  const rbody = JSON.parse(event.body);
   //TODO: responseオブジェクトのbodyプロパティに変数rbodyを代入
-
+  response.body = JSON.stringify(rbody);
   //コールバック関数でレスポンスを返す
   callback(null, response);
 };

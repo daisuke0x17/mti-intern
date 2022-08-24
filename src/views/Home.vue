@@ -3,6 +3,7 @@
     <div class="ui main container">
       <!-- 基本的なコンテンツはここに記載する -->
       <div class="ui segment">
+        <h1>Home</h1>
       </div>
     </div>
   </div>
@@ -54,6 +55,10 @@ export default {
     // Vue.jsの読み込みが完了したときに実行する処理はここに記述する
     this.iam = localStorage.getItem("userId");
     // apiからarticleを取得する
+    const isLogined = localStorage.getItem("token");
+    if(!isLogined){
+      this.$router.push({name:"Login"});
+    }
   },
   methods: {
     // Vue.jsで使う関数はここで記述する

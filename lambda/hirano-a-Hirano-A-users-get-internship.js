@@ -28,7 +28,9 @@ exports.handler = (event, context, callback) => {
     }
 
     //TODO: 全ユーザのpasswordを隠蔽する処理を記述
-
+    data.Items.forEach(function(val,index,arr){
+      delete arr[index].password;
+    })
     //TODO: レスポンスボディの設定とコールバックの記述
   });
 };
