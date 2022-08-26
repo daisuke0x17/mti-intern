@@ -3,7 +3,6 @@
     
     <Menu></Menu>
     <router-view/>
-    <Loading v-show="loading"></Loading>
   </div>
 </template>
 
