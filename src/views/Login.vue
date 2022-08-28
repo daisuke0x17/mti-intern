@@ -5,28 +5,24 @@
     display: flex;
     flex-direction:row;
     width:100%;
-    align-contents:center;
+    align-content:center;
 }
 .containerLeft{
     width:50%;
     padding:25px;
     padding-top: 60px;
-    /*background-color: red;*/
     align-items:center;
-    justify-contents:center;
+    justify-content:center;
     position: relative;
 }
-.appImage{
-    width:100%;
-}
 .containerRight{
-    width:50%;
+    display: block;
+    width: 50%;
     border:15px solid #bfbfbf;
     border-radius: 10px;
 }
 .hajimeruContainer{
-    position:absolute;
-    bottom:0;
+    margin-top: 80px;
     display: flex;
     width:100%;
     justify-content:center;
@@ -59,9 +55,7 @@ h1{
                 <button class="massive ui orange button"><div class="buttonStyle">始めてみる<div class="iconStyle"><i class="large angle right icon"></i></div></div></button>
             </div>
         </div>
-        <div class="containerRight">
-            <img src="../assets/images/appImg.png" class="appImage">
-        </div>
+        <img src="../assets/images/appImg.png" class="containerRight">
     </div>
   </div>
 </template>
@@ -131,8 +125,4 @@ export default {
   },
 }
 </script>
-<style scoped>
-/* このコンポーネントだけに適用するCSSは */
-
-</style>
 
