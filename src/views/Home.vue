@@ -146,6 +146,7 @@ export default {
                 logout(()=>this.$router.push({name:"Login"}));
             },
   }
+  }
 </script>
 <style scoped>
 
