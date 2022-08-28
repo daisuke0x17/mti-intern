@@ -5,6 +5,7 @@ import css from "./assets/style.css";
 import {initializeApp} from 'firebase/app';
 import VModal from 'vue-js-modal';
 import VueCalendarHeatmap from "vue-calendar-heatmap";
+import VueTimers from "vue-timers";
 
 Vue.config.productionTip = false
 const config = {
@@ -20,6 +21,7 @@ const config = {
 initializeApp(config);
 Vue.use(VueCalendarHeatmap);
 Vue.use(VModal);
+Vue.use(VueTimers);
 new Vue({
   router,
   css,
