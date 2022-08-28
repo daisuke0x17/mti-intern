@@ -1,37 +1,68 @@
+<style scoped>
+/* このコンポーネントだけに適用するCSSは */
+.container{
+    padding:48px;
+    display: flex;
+    flex-direction:row;
+    width:100%;
+    align-contents:center;
+}
+.containerLeft{
+    width:50%;
+    padding:25px;
+    padding-top: 60px;
+    /*background-color: red;*/
+    align-items:center;
+    justify-contents:center;
+    position: relative;
+}
+.appImage{
+    width:100%;
+}
+.containerRight{
+    width:50%;
+    border:15px solid #bfbfbf;
+    border-radius: 10px;
+}
+.hajimeruContainer{
+    position:absolute;
+    bottom:0;
+    display: flex;
+    width:100%;
+    justify-content:center;
+}
+h1{
+    font-size: 48px;
+    color:white;
+}
+.buttonStyle{
+    display: flex;
+    align-items:center;
+    justify-content:space-around;
+}
+.iconStyle{
+    margin-right:-16px;
+}
+</style>
 <template>
   <div>
-    <div class="ui main container">
+    <div class="container">
       <!-- 基本的なコンテンツはここに記載する -->
-      <div class="ui segment">
-        <form class="ui large form" v-on:submit="submit">
-            <div class="field">
-                <div class="ui left icon input">
-                    <i class="user icon"></i>
-                    <input type="email" placeholder="e-mail" v-model="email">
-                </div>
+        <div class="containerLeft">
+            <h1>
+                キャッチコピー
+                <br/>丸々しませんか？？？<br/>
+                実は座りすぎにはこんなに<br/>
+                良くないものが！！
+            </h1>
+            <div class="hajimeruContainer">
+                <button class="massive ui orange button"><div class="buttonStyle">始めてみる<div class="iconStyle"><i class="large angle right icon"></i></div></div></button>
             </div>
-            <div class="field">
-                <div class="ui left icon input">
-                    <i class="lock icon"></i>
-                    <input type="password" required placeholder="Password" v-model="password">
-                </div>
-            </div>
-            <div class="field" v-if="!isLogin">
-                <div class="ui left icon input">
-                    <i class="tag icon"></i>
-                    <input type="text" placeholder="Name" v-model="name">
-                </div>
-            </div>
-           
-            <li v-if="err" class="err-msg">{{err}}</li>
-            <button class="ui huge green fluid button" type="submit">{{submitText}}</button>
-        </form>
-      </div>
-      <button v-on:click="toggleMode()" class="ui huge grey fluid button" >{{toggleText}}</button>
+        </div>
+        <div class="containerRight">
+            <img src="../assets/images/appImg.png" class="appImage">
+        </div>
     </div>
-    <div v-if="loading">
-      <div class="ui active loader"></div>
-      </div>
   </div>
 </template>
 <script>
@@ -104,3 +135,4 @@ export default {
 /* このコンポーネントだけに適用するCSSは */
 
 </style>
+

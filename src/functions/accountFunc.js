@@ -59,7 +59,6 @@ export default function(){
             console.log("Error updating user:",error);
         })
     }
-    
     //ログイン処理（メアド、パスワード、ログイン後の処理）
     const logIn=(email,password,then)=>{
         const auth = getAuth();
@@ -85,7 +84,6 @@ export default function(){
                 then();
                 })
     }
-    
     //新規登録処理（メアド、パスワード、firestoreに登録するデータ、新規登録後の処理）
     const signUp =(email,password,userData,then)=>{
         const auth = getAuth();
