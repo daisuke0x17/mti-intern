@@ -41,7 +41,6 @@ export default function(){
         })
     }
     
-    
     const changeEmail = (email)=>{
         const auth = getAuth();
         updateEmail(auth.currentUser,email).then(()=>{
