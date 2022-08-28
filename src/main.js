@@ -4,6 +4,7 @@ import router from './router';
 import css from "./assets/style.css";
 import {initializeApp} from 'firebase/app';
 import VModal from 'vue-js-modal';
+import VueCalendarHeatmap from "vue-calendar-heatmap";
 
 Vue.config.productionTip = false
 const config = {
@@ -17,6 +18,7 @@ const config = {
 };
 
 initializeApp(config);
+Vue.use(VueCalendarHeatmap);
 Vue.use(VModal);
 new Vue({
   router,

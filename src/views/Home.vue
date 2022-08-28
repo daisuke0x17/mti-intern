@@ -84,6 +84,8 @@
           </div>
         </div>
       </div>
+      <button @click="logout" class="ui button">ログアウトする</button>
+      <Heatmap></Heatmap>
     </div>
     <Ranking></Ranking>
     <!--git hubの草-->
@@ -91,55 +93,58 @@
 </template>
 
 <script>
-  import accountFunc from "../functions/accountFunc";
-  const { getMyUserData, getMyHistories } = accountFunc();
-  import Ranking from "../components/Ranking.vue";
-  export default {
-    name: 'Home',
-    data() {
-      // Vue.jsで使う変数はここに記述する
-      return {
-        user: {
-          userId: null,
-          username: null,
-          icon: null,
-          extendedLifespan: null,
-        },
-        isLoading: false,
-      };
-    },
-    component:{
-      Ranking
-    },
-    computed: {
-      // 計算した結果を変数として利用したいときはここに記述する
-    },
-    created() {
-      // Vue.jsの読み込みが完了したときに実行する処理はここに記述する
-      this.user.userId = window.localStorage.getItem("userId");
-      console.log("userId is:", this.user.userId);
-      console.log("is logined?:", this.user.userId ? true : false);
-      if (!this.user.userId) {
-        this.$router.push({ name: "Login" });
-      }
-      else {
-        //ユーザーデータを取得
 
-        getMyUserData(this.user.userId).then((value) => {
-          console.log("userData is", value)
-          this.user.username = value.userName;
-          this.user.icon = value.icon;
-          this.user.extendedLifespan = value.extendedLifespan;
-        })
-
-        getMyHistories(this.user.userId).then((value) => {
-          console.log(value)
-        })
-      }
-    },
-    methods: {
-
+import accountFunc from "../functions/accountFunc";
+import Heatmap from "../components/Heatmap.vue";
+import Ranking from "../components/Ranking.vue";
+const {getMyUserData,getMyHistories, logout} = accountFunc();
+export default {
+  name: 'Home',
+  data() {
+    // Vue.jsで使う変数はここに記述する
+    return {
+      user:{
+        userId:null,
+        username:null,
+        icon:null,
+        extendedLifespan:null,
+      },
+      isLoading:false,
+    };
+  },
+  components:{
+    Heatmap,
+    Ranking
+  },
+  computed: {
+  // 計算した結果を変数として利用したいときはここに記述する
+  },
+  created() {
+    // Vue.jsの読み込みが完了したときに実行する処理はここに記述する
+    this.user.userId = window.localStorage.getItem("userId");
+    console.log("userId is:",this.user.userId);
+    console.log("is logined?:",this.user.userId?true:false);
+    if(!this.user.userId){
+      this.$router.push({name:"Login"});
+    }else{
+      //ユーザーデータを取得
+      
+      getMyUserData(this.user.userId).then((value)=>{
+        console.log("userData is",value)
+        this.user.username = value.userName;
+        this.user.icon = value.icon;
+        this.user.extendedLifespan = value.extendedLifespan;
+      })
+      
+      getMyHistories(this.user.userId).then((value)=>{
+        console.log(value)
+      })
     }
+  },
+  methods: {
+     logout(){
+                logout(()=>this.$router.push({name:"Login"}));
+            },
   }
 </script>
 <style scoped>
