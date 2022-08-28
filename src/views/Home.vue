@@ -9,13 +9,14 @@
         <p>{{this.user.icon}}</p>
         <p>{{this.user.extendedLifespan}}</p>
       </div>
+      <button @click="logout" class="ui button">ログアウトする</button>
     </div>
   </div>
 </template>
 
 <script>
 import accountFunc from "../functions/accountFunc";
-const {getMyUserData,getMyHistories} = accountFunc();
+const {getMyUserData,getMyHistories, logout} = accountFunc();
 export default {
   name: 'Home',
   data() {
@@ -56,7 +57,9 @@ export default {
     }
   },
   methods: {
-    
+     logout(){
+                logout(()=>this.$router.push({name:"Login"}));
+            },
   }
 }
 </script>
