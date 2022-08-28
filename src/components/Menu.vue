@@ -12,14 +12,21 @@
         <div class="right menu">
             <button class="item" @click="logout">Logout</button>
         </div>
+        <LoginModal></LoginModal>
     </div>
 </template>
 
 <script>
+import accountFunc from "../functions/accountFunc";
+import LoginModal from "../components/LoginModal.vue";
+const {logout} = accountFunc(); 
     export default {
         name:"Menu",
         props:{
             
+        },
+        components:{
+          LoginModal,
         },
         methods:{
             switchPage(pageName){
@@ -29,11 +36,9 @@
                 this.$router.push({name:pageName});
             },
             logout(){
-                console.log("logout")
-                window.localStorage.removeItem("token");
-                window.localStorage.removeItem("userId");
-                this.$router.push({name:"Login"})
+                logout(()=>this.$router.push({name:"Login"}));
             }
+           
         },
         computed:{
             current(){

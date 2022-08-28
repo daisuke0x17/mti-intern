@@ -7,25 +7,32 @@
           <div class="field">
             <div class="ui left icon input">
               <i class="user icon"></i>
-              <input type="text" placeholder="ID" v-model="user.userId" required disabled>
+              <input type="text" v-model="emailNew" placeholder="新しいメアド">
+            </div>
+          </div>
+          
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              <input type="password" placeholder="新しいパスワードを入力してください" v-model="passwordNew">
             </div>
           </div>
           <div class="field">
             <div class="ui left icon input">
               <i class="lock icon"></i>
-              <input type="text" placeholder="Password" v-model="user.password">
+              <input type="password" placeholder="パスワード確認用" v-model="passwordAgain">
             </div>
           </div>
           <div class="field">
             <div class="ui left icon input">
               <i class="tag icon"></i>
-              <input type="text" placeholder="Nickname" v-model="user.nickname">
+              <input type="text" placeholder="username" v-model="usernameNew">
             </div>
           </div>
           <div class="field">
             <div class="ui left icon input">
-              <i class="calendar icon"></i>
-              <input type="text" placeholder="age" v-model="user.age">
+              <i class="image icon"></i>
+              <input type="text" placeholder="icon" v-model="iconNew">
             </div>
           </div>
           <li v-if="err" class="err-msg">{{err}}</li>
@@ -42,11 +49,13 @@
 
 </template>
 <script>
-  // 必要なものはここでインポートする
-  // @は/srcの同じ意味です
-  // import something from '@/components/something.vue';
-  import { baseUrl } from "@/assets/config.js";
-  import axios from "axios";
+  import accountFunc from "../functions/accountFunc";
+  const {getMyUserData,getMyAccountData,
+  changeEmail,
+  changePassword,
+  changeUserData
+    
+  } = accountFunc();
   export default {
     name: 'Profile',
     components: {
@@ -57,11 +66,15 @@
       return {
         user: {
           userId: window.localStorage.getItem("userId"),
-          password: null,
-          nickname: null,
-          age: null,
-
+          email:null,
+          username: null,
+          icon: null,
         },
+        emailNew:null,
+        passwordNew: null,
+        passwordAgain:null,
+        usernameNew:null,
+        iconNew:null,
         err: null,
         loading: true,
       };
@@ -70,64 +83,72 @@
       // 計算した結果を変数として利用したいときはここに記述する
     },
     created() {
-      axios.get(baseUrl + "/user" + "?userId=" + this.user.userId)
-        .then((response) => {
-          console.log(response);
-          this.user.nickname = response.data.nickname;
-          this.user.age = response.data.age;
-          this.loading = false;
-        })
-        .catch(() => {
-          this.loading = false;
-          this.err = '予期せぬエラーが発生しました';
-        })
+      getMyUserData(this.user.userId).then((data)=>{
+        console.log(data)
+        this.user.username = data.userName;
+        this.usernameNew = data.userName;
+        this.user.icon = data.icon;
+        this.iconNew = data.icon;
+        console.log(this.user);
+      });
+      const acdata = getMyAccountData();
+      this.user.email = acdata;
+      this.emailNew = acdata;
     },
     methods: {
       // Vue.jsで使う関数はここで記述する
       submit() {
 
-        if (!this.user.password) {
-          this.err = "パスワードを入力してください";
-          return;
+        if (this.passwordNew && this.passwordAgain) {
+          if(this.passwordNew === this.passwordAgain){
+            changePassword(this.user.password)
+          }
+          else{
+            alert("パスワードが一致しません")
+          }
+        }else{
+          alert("パスワードを入力してください")
         }
-        else if (!this.user.nickname) {
-          this.err = "ニックネームを入力してください";
-          return;
+        if(this.emailNew){
+          if(this.user.email !== this.emailNew){
+            changeEmail(this.emailNew);
+          }
         }
-        else if (!this.user.age) {
-          this.err = "年齢を入力してください";
-          return;
+        if (this.user.username !== this.usernameNew || this.user.icon !== this.iconNew){
+          console.log(this.usernameNew)
+          changeUserData(this.user.userId,this.usernameNew,this.iconNew);
         }
         this.loading = true;
-        const requestBody = {
-          userId: this.user.userId,
-          password: this.user.password,
-          nickname: this.user.nickname,
-          age: this.user.age
-        };
-        axios.put(baseUrl + "/user", requestBody)
-          .then(() => {
-            this.$router.push({ name: "Home" });
-            this.loading = false;
-          })
-          .catch((e) => {
-            this.loading = false;
-            throw new Error(e);
-          })
+        
+        // const requestBody = {
+        //   userId: this.user.userId,
+        //   password: this.user.password,
+        //   nickname: this.user.nickname,
+        //   age: this.user.age
+        // };
+        // axios.put(baseUrl + "/user", requestBody)
+        //   .then(() => {
+        //     this.$router.push({ name: "Home" });
+        //     this.loading = false;
+        //   })
+        //   .catch((e) => {
+        //     this.loading = false;
+        //     throw new Error(e);
+        //   })
       },
       deleteUser() {
         this.loading = true;
-        axios.delete(baseUrl + "/user", {
-            data: {
-              userId: this.user.userId
-            }
-          })
-          .then(() => {
-            this.$router.push({ name: "Login" });
-          })
-          .catch((e) => {
-            throw new Error(e);
-          })
+        // axios.delete(baseUrl + "/user", {
+        //     data: {
+        //       userId: this.user.userId
+        //     }
+        //   })
+        //   .then(() => {
+        //     this.$router.push({ name: "Login" });
+        //   })
+        //   .catch((e) => {
+        //     throw new Error(e);
+        //   })
       }
     },
   }
