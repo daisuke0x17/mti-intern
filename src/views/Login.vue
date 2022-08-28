@@ -31,14 +31,7 @@ h1{
     font-size: 48px;
     color:white;
 }
-.buttonStyle{
-    display: flex;
-    align-items:center;
-    justify-content:space-around;
-}
-.iconStyle{
-    margin-right:-16px;
-}
+
 </style>
 <template>
   <div>
@@ -52,7 +45,7 @@ h1{
                 良くないものが！！
             </h1>
             <div class="hajimeruContainer">
-                <button class="massive ui orange button"><div class="buttonStyle">始めてみる<div class="iconStyle"><i class="large angle right icon"></i></div></div></button>
+                <HajimeruModal></HajimeruModal>
             </div>
         </div>
         <img src="../assets/images/appImg.png" class="containerRight">
@@ -61,11 +54,13 @@ h1{
 </template>
 <script>
 import accountFunc from "../functions/accountFunc";
+import HajimeruModal from "../components/HajimeruModal.vue";
 const {logIn,signUp} = accountFunc();
 export default {
   name: 'Login',
   components: {
    // 読み込んだコンポーネント名をここに記述する
+   HajimeruModal
   },
   data() {
   // Vue.jsで使う変数はここに記述する
