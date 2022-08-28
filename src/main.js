@@ -4,6 +4,7 @@ import router from './router';
 import css from "./assets/style.css";
 import {initializeApp} from 'firebase/app';
 import VModal from 'vue-js-modal';
+
 Vue.config.productionTip = false
 const config = {
   apiKey: "AIzaSyC6ZLG7b0ovlOmdSn1YQ0GdrV0w0lMo1Rs",
