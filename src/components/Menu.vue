@@ -16,6 +16,8 @@
 </template>
 
 <script>
+import accountFunc from "../functions/accountFunc";
+const {logout} = accountFunc(); 
     export default {
         name:"Menu",
         props:{
@@ -29,11 +31,9 @@
                 this.$router.push({name:pageName});
             },
             logout(){
-                console.log("logout")
-                window.localStorage.removeItem("token");
-                window.localStorage.removeItem("userId");
-                this.$router.push({name:"Login"})
+                logout(()=>this.$router.push({name:"Login"}));
             }
+           
         },
         computed:{
             current(){

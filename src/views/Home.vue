@@ -5,12 +5,17 @@
       <div class="ui segment">
         <h1>Home</h1>
         <p>{{this.user.userId}}</p>
+        <p>{{this.user.username}}</p>
+        <p>{{this.user.icon}}</p>
+        <p>{{this.user.extendedLifespan}}</p>
       </div>
     </div>
   </div>
 </template>
 
 <script>
+import accountFunc from "../functions/accountFunc";
+const {getMyUserData,getMyHistories} = accountFunc(); 
 export default {
   name: 'Home',
   data() {
@@ -18,7 +23,10 @@ export default {
   
     return {
       user:{
-        userId:null
+        userId:null,
+        username:null,
+        icon:null,
+        extendedLifespan:null,
       },
       isLoading:false,
     };
@@ -36,6 +44,17 @@ export default {
       this.$router.push({name:"Login"});
     }else{
       //ユーザーデータを取得
+      
+      getMyUserData(this.user.userId).then((value)=>{
+        console.log("userData is",value)
+        this.user.username = value.userName;
+        this.user.icon = value.icon;
+        this.user.extendedLifespan = value.extendedLifespan;
+      })
+      
+      getMyHistories(this.user.userId).then((value)=>{
+        console.log(value)
+      })
     }
   },
   methods: {
@@ -44,4 +63,7 @@ export default {
 }
 </script>
 <style scoped>
+
+
+
 </style>

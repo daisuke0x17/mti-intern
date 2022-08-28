@@ -84,12 +84,18 @@ export default {
         }
         //新規登録処理
         console.log("signup");
-        signUp(
-            this.email,
-            this.password,
-            {name:this.name},
-            ()=>this.$router.push({name:"Home"})
-        );
+        if(this.name){
+            signUp(
+                this.email,
+                this.password,
+                {name:this.name},
+                ()=>this.$router.push({name:"Home"})
+            );
+            this.loading = false;
+        }else{
+            alert("名前を入力してください");
+            this.loading = false;
+        }
     },
   },
 }
