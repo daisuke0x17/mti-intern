@@ -15,7 +15,7 @@
 
 <script>
 import accountFunc from "../functions/accountFunc";
-const {getMyUserData,getMyHistories} = accountFunc(); 
+const {getMyUserData,getMyHistories} = accountFunc();
 export default {
   name: 'Home',
   data() {
@@ -32,7 +32,6 @@ export default {
   },
   computed: {
   // 計算した結果を変数として利用したいときはここに記述する
-    
   },
   created() {
     // Vue.jsの読み込みが完了したときに実行する処理はここに記述する
