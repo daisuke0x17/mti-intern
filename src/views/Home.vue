@@ -7,6 +7,14 @@
 .details{
   display:block;
 }
+h3{
+  font-size:21px;
+  color:white;
+}
+p{
+  font-size:12px;
+  color:white;
+}
 </style>
 <template>
   <div class="ui main container">

@@ -1,14 +1,16 @@
 <template>
   <div>
     <div class="ui main container">
-      <!-- 基本的なコンテンツはここに記載する -->
+      <user_list></user_list>
     </div>
   </div>
 </template>
+
 <script>
 // 必要なものはここでインポートする
 // @は/srcの同じ意味です
 // import something from '@/components/something.vue';
+import user_list from '@/components/RankingUserList.vue';
 
 export default {
   name: 'Ranking',
@@ -30,5 +32,5 @@ export default {
 }
 </script>
 <style scoped>
-/* このコンポーネントだけに適用するCSSは */
+
 </style>
