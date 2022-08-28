@@ -1,13 +1,7 @@
 <template>
-    <div class="ui secondary pointing gray inverted massive menu">
-        <img class="" src="" alt="aimani">
-        <LoginModal></LoginModal>
-        <div class="right menu">
-            <!--<button class="item">-->
-            <!--    ログイン-->
-            <!--</button>-->
-        </div>
-        
+    <div class="headercontainer">
+        <img class="logo_size" src="../assets/Logo_NIKE.svg.png" alt="aimani">
+        <LoginModal ></LoginModal>
     </div>
 </template>
 
@@ -40,6 +34,20 @@ const {logout} = accountFunc();
         },
     }
 </script>
-<style scoped>
-    
+<style>
+    .headercontainer{
+        padding:12px;
+        display: flex;
+        flex-direction: row;
+        background-color:#787878;
+        justify-content: space-between;
+        align-items:center;
+        align-contents:center;
+    }
+    .logo_size{
+        height: 50px;
+        width: 105px;
+        /*margin: 40px 0 20px 60px;*/
+    }
+   
 </style>

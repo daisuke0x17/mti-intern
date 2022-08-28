@@ -1,9 +1,11 @@
 <template>
-  <div class="ui main container">
+  <!--<div class="ui main container">-->
     <!-- 基本的なコンテンツはここに記載する -->
     <div class="right menu">
-      <button v-on:click="show" class="button">ログイン</button>
-    </div>
+      <button v-on:click="show" class="ui inverted basic button">
+        ログイン
+      </button>
+    <!--</div>-->
       <modal name="hello-world" :draggable="true" :resizable="true">
         <div class="modal-header">
           <h2>ログイン</h2>
