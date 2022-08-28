@@ -9,9 +9,6 @@ updatePassword
 import {updateDoc, getFirestore, doc, setDoc,getDoc,query,collection,getDocs } from 'firebase/firestore'
 export default function(){
     
-    
-    
-    
     const getMyUserData = async(userId)=>{
         const db = getFirestore();
         const docsnap = await getDoc(doc(db,'users',`${userId}`));
