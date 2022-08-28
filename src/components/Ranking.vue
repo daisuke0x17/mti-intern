@@ -7,9 +7,6 @@
 </template>
 
 <script>
-// 必要なものはここでインポートする
-// @は/srcの同じ意味です
-// import something from '@/components/something.vue';
 import user_list from '@/components/RankingUserList.vue';
 
 export default {
