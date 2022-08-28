@@ -4,13 +4,29 @@
       <!-- 基本的なコンテンツはここに記載する -->
       <button v-on:click="show" class="button">show!</button>
   <modal name="hello-world" :draggable="true" :resizable="true">
-    <div class="modal-header">
-      <h2>Modal title</h2>
-    </div>
-    <div class="modal-body">
-      <p>you're reading this text in a modal!</p>
-      <button v-on:click="hide">閉じる</button>
-    </div>
+    <form class="ui large form" v-on:submit="submit">
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="user icon"></i>
+                    <input type="email" placeholder="e-mail" v-model="email">
+                </div>
+            </div>
+            <div class="field">
+                <div class="ui left icon input">
+                    <i class="lock icon"></i>
+                    <input type="password" required placeholder="Password" v-model="password">
+                </div>
+            </div>
+            <div class="field" v-if="!isLogin">
+                <div class="ui left icon input">
+                    <i class="tag icon"></i>
+                    <input type="text" placeholder="Name" v-model="name">
+                </div>
+            </div>
+           
+            <li v-if="err" class="err-msg">{{err}}</li>
+            <button class="ui huge green fluid button" type="submit">{{submitText}}</button>
+        </form>
   </modal>
     </div>
  

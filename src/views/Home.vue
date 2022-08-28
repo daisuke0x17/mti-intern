@@ -20,7 +20,6 @@ export default {
   name: 'Home',
   data() {
     // Vue.jsで使う変数はここに記述する
-  
     return {
       user:{
         userId:null,
