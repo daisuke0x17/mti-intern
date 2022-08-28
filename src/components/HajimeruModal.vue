@@ -64,6 +64,7 @@
         },
         email: null,
         password: null,
+        name:null,
         err: null,
         loading: false,
 
@@ -138,6 +139,5 @@
   }
   .aStyle{
     padding:20px;
-
   }
 </style>

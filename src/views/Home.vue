@@ -10,12 +10,14 @@
         <p>{{this.user.extendedLifespan}}</p>
       </div>
       <button @click="logout" class="ui button">ログアウトする</button>
+      <Heatmap></Heatmap>
     </div>
   </div>
 </template>
 
 <script>
 import accountFunc from "../functions/accountFunc";
+import Heatmap from "../components/Heatmap.vue";
 const {getMyUserData,getMyHistories, logout} = accountFunc();
 export default {
   name: 'Home',
@@ -30,6 +32,9 @@ export default {
       },
       isLoading:false,
     };
+  },
+  components:{
+    Heatmap
   },
   computed: {
   // 計算した結果を変数として利用したいときはここに記述する
