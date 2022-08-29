@@ -92,7 +92,7 @@ p {
               <p>設定</p>
             </div>
           </button>
-          <button class="">
+          <button class="" @click="logout">
             <div>
               <i class="sign out alternate icon"></i>
               <p>ログアウト</p>
@@ -328,6 +328,7 @@ export default {
       window.localStorage.setItem("restTime", this.user.restTime);
     },
     show: function () {
+
       this.selectedJenre = "single";
       this.$modal.show("hello-world");
     },
