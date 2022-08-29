@@ -16,9 +16,6 @@ export default function(){
             console.log("tmp is",tmp)
             return tmp;
         })
-        
-        
-        
     }
     
     //作業を開始する際に実行するフロントの処理(Room.vueで実行)
@@ -31,13 +28,13 @@ export default function(){
     }
     //
     const endTask =(userId,then)=>{
-        const db = getFirestore();
-        const data = {
-            count:window.localStorage.getItem("currentExtendedLifespan"),
-            date:window.localStorage.getItem("today")
-        }
-        console.log("data is",data)
-        setDoc(collection(db,"users",`${userId}`,"histories"),data); 
+        // const db = getFirestore();
+        // const data = {
+        //     count:window.localStorage.getItem("currentExtendedLifespan"),
+        //     date:window.localStorage.getItem("today")
+        // }
+        // console.log("data is",data)
+        // setDoc(collection(db,"users",`${userId}`,"histories"),data); 
         window.localStorage.removeItem("currentExtendedLifespan");
         window.localStorage.removeItem("today");
         window.localStorage.removeItem("isAlone");
