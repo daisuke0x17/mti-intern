@@ -1,159 +1,249 @@
 <style scoped>
-.ui image label{
-  padding:48px;
-  display:flex;
+  /**{*/
+  /*  box-sizing:border-box;*/
+  /*}*/
+  .ui main container{
+    height:100vh;
+    background-color: #424242;
+    margin-top:100px;
+  }
   
-}
-.details{
-  display:block;
-}
-h3{
-  font-size:21px;
-  color:white;
-}
-p{
-  font-size:12px;
-  color:white;
-}
+  .ui image label {
+    display: flex;
+  }
+
+  .button {
+    display: block;
+    margin-left: auto;
+    margin-bottom: 2em;
+    height:100px;
+  }
+
+  .icon {
+    position:relative;
+    margin-left: auto;
+    font-size:1.5em;
+    flex-direction:row;
+    text-align: left;
+  }
+ 
+  h3 {
+    
+    font-size: 10px;
+    color: white;
+  }
+
+  p {
+    font-size: 14px;
+    color: white;
+  }
+  
+  .inputTest{
+    position:absolute;
+    top:100px;
+    right:200px;
+  }
+  .white{
+    color:white;
+  }
 </style>
 <template>
   <div class="ui main container">
-    <div class="ui segment">
-      <img src="" class="logo">
-      <div class="content">
-        <div>
-          <div>
-            <a class="ui image label">
-              <!--アイコン-->
-              <img src="">
+    <!--<div class="ui segment">-->
+    <img src="" class="logo">
+    <div class="ui grid">
+      <!-- 左側の画面 -->
+      <div class="eleven wide column">
+        <div class="ui segment">
+          <a class="ui image label">
+            <!--アイコン-->
+            <img src="">
+            <font style="vertical-align: inherit;">
               <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">
-                  {{this.user.username}}
-                </font>
+                {{this.user.username}}
               </font>
-              <img src="../assets/images/health.png">
-              <div class="detail">
-                <font style="vertical-align: inherit;">
-                  <font style="vertical-align: inherit;">{{this.user.extendedLifespan}}</font>
-                </font>
-              </div>
-            </a>
-          </div>
-          <button>
-            <div>
-              <i class="user outline icon"></i>
-              <h3>一人で作業</h3>
-              <p>一人で作業を行います。</p>
+            </font>
+            <img src="../assets/images/health.png">
+            <div class="detail">
+              <font style="vertical-align: inherit;">
+                <font style="vertical-align: inherit;">{{this.user.extendedLifespan}}</font>
+              </font>
             </div>
-          </button>
-          <button>
-            <div>
-              <i class="user outline icon"></i>
-              <h3>みんなで作業</h3>
-              <p>ルームのオーナーになって</p>
-              <p>参加者を募集します</p>
-            </div>
-          </button>
-          <button>
-            <div>
-              <i class="sign in alternate icon"></i>
-              <h3>ルームに参加</h3>
-              <p>教えてもらった</p>
-              <p>ルームIDから参加する</p>
-            </div>
-          </button>
+          </a>
         </div>
-        <!-- 左側の画面 -->
         <div class="">
-
-          <div class="">
-            <button>
-              <div>
-                <i class="question circle icon"></i>
-                <p>使い方</p>
-              </div>
-            </button>
-            <button class="">
+          <button>
+            <div>
+              <i class="question circle icon"></i>
+              <p>使い方</p>
+            </div>
+          </button>
+          
+          <button class="">
+            <div>
               <i class="child icon"></i>
               <p>ストレッチ一覧</p>
-            </button>
-            <button class="">
-              <div>
-                <i class="cogs icon"></i>
-                <p>設定</p>
-              </div>
-            </button>
-            <button class="">
-              <div>
-                <i class="sign out alternate icon"></i>
-                <p>ログアウト</p>
-              </div>
-            </button>
-          </div>
+            </div>
+          </button>
+          <button class="">
+            <div>
+              <i class="cogs icon"></i>
+              <p>設定</p>
+            </div>
+          </button>
+          <button class="">
+            <div>
+              <i class="sign out alternate icon"></i>
+              <p>ログアウト</p>
+            </div>
+          </button>
         </div>
       </div>
-      <button @click="logout" class="ui button">ログアウトする</button>
-      <Heatmap></Heatmap>
+      <!-- 右側の画面 -->
+      <div class="five wide column">
+        <!--自分のプロフィール-->
+        <!--ここからkatayama-->
+        <div class="ui orange button" @click="gotoRoom">
+          <div class="ui header">
+              <i class="user outline icon"></i>
+              <div class="content white">
+                一人で作業
+                <div class="sub header">
+                  <p>一人で作業を行います。</p>
+                </div>
+              </div>
+          </div>
+        </div>
+        <!--ここまでkatayama-->
+        <div class="ui green button" @click="createRoom">
+          <div class="ui header">
+            <i class="user outline icon"></i>
+            <div class="content white">
+              みんなで作業
+              <div class="sub header">
+                <p>ルームのオーナーになって</p>
+                <p>参加者を募集します</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="ui blue button" @click="joinRoom">
+          <div class="ui header">
+            <i class="sign in alternate icon"></i>
+            <div class="content white">
+              ルームに参加
+               <div class="sub header">
+                教えてもらった
+                ルームIDから参加する
+              </div>
+            </div>
+          </div>
+        </div>
+        <input class="inputTest" type="text" placeholder="roomId" v-model="joinRoomId">
+      </div>
     </div>
-    <Ranking></Ranking>
-    <!--git hubの草-->
+    <div class="ui grid">
+      <div class="four wide column">
+        <!--ランキング画面-->
+        <RankingUserList></RankingUserList>
+      </div>
+      <div class="eleven wide column">
+        <!--git hubの草-->
+        <Heatmap></Heatmap>
+      </div>
+    </div>
   </div>
 </template>
 
 <script>
+  import accountFunc from "../functions/accountFunc";
+  import RoomFunc from "../functions/RoomFunc";
+  import Heatmap from "../components/Heatmap.vue";
+  import RankingUserList from "../components/RankingUserList.vue";
+  const { getMyUserData, getMyHistories, logout } = accountFunc();
+  const {createRoom,joinRoom,gotoRoom} = RoomFunc();
+  export default {
+    name: 'Home',
+    data() {
+      // Vue.jsで使う変数はここに記述する
+      return {
+        user: {
+          userId: null,
+          username: null,
+          icon: null,
+          extendedLifespan: null,
+          taskTime:50,
+          restTime:10,
+        },
+        isLoading: false,
+        joinRoomId:null,
+      };
+    },
+    components: {
+      Heatmap,
+      RankingUserList,
+    },
+    computed: {
+      // 計算した結果を変数として利用したいときはここに記述する
+    },
+    created() {
+      // Vue.jsの読み込みが完了したときに実行する処理はここに記述する
+      this.user.userId = window.localStorage.getItem("userId");
+      console.log("userId is:", this.user.userId);
+      console.log("is logined?:", this.user.userId ? true : false);
+      if (!this.user.userId) {
+        this.$router.push({ name: "Login" });
+      }
+      else {
+        //ユーザーデータを取得
 
-import accountFunc from "../functions/accountFunc";
-import Heatmap from "../components/Heatmap.vue";
-import Ranking from "../components/Ranking.vue";
-const {getMyUserData,getMyHistories, logout} = accountFunc();
-export default {
-  name: 'Home',
-  data() {
-    // Vue.jsで使う変数はここに記述する
-    return {
-      user:{
-        userId:null,
-        username:null,
-        icon:null,
-        extendedLifespan:null,
+        getMyUserData(this.user.userId).then((value) => {
+          console.log("userData is", value)
+          this.user.username = value.userName;
+          this.user.icon = value.icon;
+          this.user.extendedLifespan = value.extendedLifespan;
+        })
+
+        getMyHistories(this.user.userId).then((value) => {
+          console.log(value)
+        })
+      }
+    },
+    methods: {
+      logout() {
+        logout(() => this.$router.push({ name: "Login" }));
       },
-      isLoading:false,
-    };
-  },
-  components:{
-    Heatmap,
-    Ranking
-  },
-  computed: {
-  // 計算した結果を変数として利用したいときはここに記述する
-  },
-  created() {
-    // Vue.jsの読み込みが完了したときに実行する処理はここに記述する
-    this.user.userId = window.localStorage.getItem("userId");
-    console.log("userId is:",this.user.userId);
-    console.log("is logined?:",this.user.userId?true:false);
-    if(!this.user.userId){
-      this.$router.push({name:"Login"});
-    }else{
-      //ユーザーデータを取得
+      createRoom(){
+        this.setTimes();
+        createRoom(this.user.userId,this.user.taskTime,this.user.restTime,()=>this.$router.push({ name: "Room" }));
+      },
+      joinRoom(){
+        if(this.joinRoomId){
+        this.setTimes();
+        joinRoom(this.joinRoomId,this.user.userId,()=>this.$router.push({ name: "Room" }));
+        }else{
+          alert("ルームIDを入力してください！")
+        }
+      },
+      gotoRoom(){
+        this.setTimes();
+        gotoRoom(() => this.$router.push({ name: "Room" }))
+      },
+      setTimes(){
+        window.localStorage.setItem("taskTime",this.user.taskTime);
+        window.localStorage.setItem("restTime",this.user.restTime);
+      },
+      show: function() {
+        this.$modal.show('hello-world')
+      },
+      hide: function() {
+        this.$modal.hide('hello-world')
+      },
       
-      getMyUserData(this.user.userId).then((value)=>{
-        console.log("userData is",value)
-        this.user.username = value.userName;
-        this.user.icon = value.icon;
-        this.user.extendedLifespan = value.extendedLifespan;
-      })
-      
-      getMyHistories(this.user.userId).then((value)=>{
-        console.log(value)
-      })
+      // joinRoom(){
+      //   joinRoom()
+      // }
     }
-  },
-  methods: {
-     logout(){
-                logout(()=>this.$router.push({name:"Login"}));
-            },
-  }
   }
 </script>
 <style scoped>
