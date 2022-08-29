@@ -36,7 +36,6 @@
 
           <button v-on:click="hide">閉じる</button>
         </div>
-
       </modal>
     </div>
 
