@@ -89,7 +89,7 @@ h1 {
   <div class="oya">
     <!-- 基本的なコンテンツはここに記載する -->
     <div class="mainContent">
-      <div class="left" v-if="!isAlone">
+      <div class="left" v-if="isAlone === 'false'">
         <div class="memberList">
           <h1 class="title">メンバー</h1>
           <div

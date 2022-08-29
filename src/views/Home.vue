@@ -293,6 +293,7 @@ export default {
         this.selectedJenre
       );
       if (this.selectedJenre == "multi") {
+        this.setTimes();
         createRoom(
           this.user.userId,
           this.user.taskTime,
@@ -300,6 +301,7 @@ export default {
           () => this.$router.push({ name: "Room" })
         );
       } else if (this.selectedJenre == "single") {
+        this.setTimes();
         gotoRoom(() => this.$router.push({ name: "Room" }));
       }
     },
@@ -328,7 +330,6 @@ export default {
       window.localStorage.setItem("restTime", this.user.restTime);
     },
     show: function () {
-
       this.selectedJenre = "single";
       this.$modal.show("hello-world");
     },
