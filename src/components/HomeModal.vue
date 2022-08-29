@@ -32,9 +32,8 @@
             </div>
             <li v-if="err" class="err-msg">{{err}}</li>
             <button class="ui huge gray fluid button" type="submit">{{submitText}}</button>
+            <button class="ui huge gray fluid button" v-on:click="hide">閉じる</button>
           </form>
-
-          <button v-on:click="hide">閉じる</button>
         </div>
       </modal>
     </div>
