@@ -71,17 +71,14 @@ h1 {
 }
 .center {
   width: 40%;
-  background-color: red;
 }
 .left {
   display: flex;
   flex-direction: column;
   /* justify-content: space-between; */
-  background-color: blue;
   height: 100%;
 }
 .oya {
-  background-color: green;
   height: 100vh;
   display: flex;
   align-content: center;
@@ -92,7 +89,7 @@ h1 {
   <div class="oya">
     <!-- 基本的なコンテンツはここに記載する -->
     <div class="mainContent">
-      <div class="left">
+      <div class="left" v-if="!isAlone">
         <div class="memberList">
           <h1 class="title">メンバー</h1>
           <div
