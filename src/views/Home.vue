@@ -1,155 +1,180 @@
 <style scoped>
-  /**{*/
-  /*  box-sizing:border-box;*/
-  /*}*/
   .ui main container{
     height:100vh;
     background-color: #424242;
     margin-top:100px;
   }
-  
+  /* 画面上部 */
+  .top-wrapper{
+    height:50vh;
+  }
+  /* 画面上部左側 */
+    .my-profile-wrapper{
+      height: 90%;
+    }
+    .top-btn-wrapper{
+      display:flex;
+      justify-content: space-around;
+      margin-top:5%;
+    }
+    .top-btn{
+      display:inline-block;
+      height:130px;
+      width: 130px;
+      background-color: #fff;
+      color: #666666;
+      font-size: 3rem;
+      text-align: center;
+      border-radius: 10%;
+    }
+    .top-btn-chr{
+      color: #666666;
+      font-size: 1.1rem;
+      font-weight: bold;
+    }
+    /* 画面上部右側 */
+    .top-right-btn-wrapper{
+      height: 100%;
+    }
+    .top-right-btn {
+      display: block;
+      height:30%;
+      margin-bottom:8%;
+    }
+    .mode-btn-flex{
+      display: flex;
+      justify-content: center;
+    }
+    .mode-name {
+      font-size: 1.5rem;
+      color:#fff;
+    }
+    .mode-icon{
+      color:#fff;
+    }
+    .mode-describe{
+      color:#fff;
+    }
+
+  /* 画面下部 */
+  .bottom-wrapper{
+    height: 50vh;
+  }
+
   .ui image label {
     display: flex;
   }
 
-  .button {
-    display: block;
-    margin-left: auto;
-    margin-bottom: 2em;
-    height:100px;
-  }
-
-  .icon {
-    position:relative;
-    margin-left: auto;
-    font-size:1.5em;
-    flex-direction:row;
-    text-align: left;
-  }
- 
-  h3 {
-    
-    font-size: 10px;
-    color: white;
-  }
-
-  p {
-    font-size: 14px;
-    color: white;
-  }
-  
+  /* テスト */
   .inputTest{
     position:absolute;
     top:100px;
     right:200px;
   }
-  .white{
-    color:white;
-  }
 </style>
 <template>
   <div class="ui main container">
-    <!--<div class="ui segment">-->
-    <img src="" class="logo">
-    <div class="ui grid">
-      <!-- 左側の画面 -->
-      <div class="eleven wide column">
-        <div class="ui segment">
-          <a class="ui image label">
-            <!--アイコン-->
-            <img src="">
-            <font style="vertical-align: inherit;">
+    <div class="top-wrapper">
+      <div class="ui grid stackable">
+        <!-- 左側の画面 -->
+        <div class="eleven wide column">
+          <div class="ui segment my-profile-wrapper">
+            <a class="ui image label">
+              <!--アイコン-->
+              <img src="">
               <font style="vertical-align: inherit;">
-                {{this.user.username}}
+                <font style="vertical-align: inherit;">
+                  {{this.user.username}}
+                </font>
               </font>
-            </font>
-            <img src="../assets/images/health.png">
-            <div class="detail">
-              <font style="vertical-align: inherit;">
-                <font style="vertical-align: inherit;">{{this.user.extendedLifespan}}</font>
-              </font>
-            </div>
-          </a>
+              <img src="../assets/images/health.png">
+              <div class="detail">
+                <font style="vertical-align: inherit;">
+                  <font style="vertical-align: inherit;">{{this.user.extendedLifespan}}</font>
+                </font>
+              </div>
+            </a>
+          </div>
+          <div class="top-btn-wrapper">
+            <button class="top-btn">
+              <div>
+                <i class="question circle icon"></i>
+                <p class="top-btn-chr">使い方</p>
+              </div>
+            </button>
+
+            <button class="top-btn">
+              <div>
+                <i class="child icon"></i>
+                <p class="top-btn-chr">ストレッチ一覧</p>
+              </div>
+            </button>
+            <button class="top-btn">
+              <div>
+                <i class="cogs icon"></i>
+                <p class="top-btn-chr">設定</p>
+              </div>
+            </button>
+            <button class="top-btn">
+              <div>
+                <i class="sign out alternate icon"></i>
+                <p class="top-btn-chr">ログアウト</p>
+              </div>
+            </button>
+          </div>
         </div>
-        <div class="">
-          <button>
-            <div>
-              <i class="question circle icon"></i>
-              <p>使い方</p>
-            </div>
-          </button>
-          
-          <button class="">
-            <div>
-              <i class="child icon"></i>
-              <p>ストレッチ一覧</p>
-            </div>
-          </button>
-          <button class="">
-            <div>
-              <i class="cogs icon"></i>
-              <p>設定</p>
-            </div>
-          </button>
-          <button class="">
-            <div>
-              <i class="sign out alternate icon"></i>
-              <p>ログアウト</p>
-            </div>
-          </button>
-        </div>
-      </div>
-      <!-- 右側の画面 -->
-      <div class="five wide column">
-        <!--自分のプロフィール-->
-        <!--ここからkatayama-->
-        <div class="ui orange button" @click="gotoRoom">
-          <div class="ui header">
-              <i class="user outline icon"></i>
-              <div class="content white">
-                一人で作業
-                <div class="sub header">
-                  <p>一人で作業を行います。</p>
+        <!-- 右側の画面 -->
+        <div class="five wide column top-right-btn-wrapper">
+          <!--自分のプロフィール-->
+          <div class="ui orange button top-right-btn" @click="gotoRoom">
+              <div class="ui header mode-icon">
+                <i class="user outline icon"></i>
+                <div class="content mode-name">
+                  一人で作業
+                  <div class="sub header">
+                    一人で作業を行います。
+                  </div>
                 </div>
               </div>
-          </div>
-        </div>
-        <!--ここまでkatayama-->
-        <div class="ui green button" @click="createRoom">
-          <div class="ui header">
-            <i class="user outline icon"></i>
-            <div class="content white">
-              みんなで作業
-              <div class="sub header">
-                <p>ルームのオーナーになって</p>
-                <p>参加者を募集します</p>
+            </div>
+          <div class="ui green button top-right-btn" @click="createRoom">
+            <div class="ui header">
+              <i class="user outline icon mode-icon"></i>
+              <div class="content mode-name">
+                みんなで作業
+                <div class="sub header">
+                  ルームのオーナーになって<br>
+                  参加者を募集します
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="ui blue button" @click="joinRoom">
-          <div class="ui header">
-            <i class="sign in alternate icon"></i>
-            <div class="content white">
-              ルームに参加
-               <div class="sub header">
-                教えてもらった
-                ルームIDから参加する
+          <div class="ui blue button top-right-btn" @click="joinRoom">
+            <div class="ui header">
+              <i class="sign in alternate icon mode-icon"></i>
+              <div class="content mode-name">
+                ルームに参加
+                <div class="sub header">
+                  教えてもらった
+                  ルームIDから参加する
+                </div>
               </div>
             </div>
           </div>
+          <input class="inputTest" type="text" placeholder="roomId" v-model="joinRoomId">
         </div>
-        <input class="inputTest" type="text" placeholder="roomId" v-model="joinRoomId">
       </div>
     </div>
-    <div class="ui grid">
-      <div class="four wide column">
-        <!--ランキング画面-->
-        <RankingUserList></RankingUserList>
-      </div>
-      <div class="eleven wide column">
-        <!--git hubの草-->
-        <Heatmap></Heatmap>
+    <div class="bottom-wrapper">
+      <div class="ui grid stackable">
+        <div class="four wide column">
+          <!--ランキング画面-->
+          <RankingUserList></RankingUserList>
+        </div>
+        <div class="eleven wide column">
+          <!--git hubの草-->
+          <Heatmap></Heatmap>
+        </div>
       </div>
     </div>
   </div>
@@ -239,7 +264,7 @@
       hide: function() {
         this.$modal.hide('hello-world')
       },
-      
+
       // joinRoom(){
       //   joinRoom()
       // }
