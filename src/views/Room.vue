@@ -4,7 +4,7 @@
       <!-- 基本的なコンテンツはここに記載する -->
       <h1>ルーム</h1>
       <Timer>
-        
+
       </Timer>
       <div v-for="member in roomMembers" :key="member.userId">
         <p>{{member.userId}}</p>
@@ -12,7 +12,7 @@
         <p>{{member.icon}}</p>
         <p>{{member.extendedLifespan}}</p>
       </div>
-      <button @click="getoutRoom" class="ui button">ルームを出る</button>
+      <button @click="getoutRoom" class="ui button">ルームから出る</button>
     </div>
   </div>
 </template>
@@ -52,7 +52,7 @@ export default {
     window.addEventListener("beforeunload", this.confirmSave);
   },
   unmounted(){
-    
+
     window.removeEventListener("beforeload",this.confirmSave);
   },
   methods: {
@@ -60,7 +60,7 @@ export default {
 		confirm(){return window.confirm('ページを離脱してもよろしいですか？');
     },
     setTime(){
-      
+
     },
     endTask(){
       endTask()
@@ -90,9 +90,9 @@ export default {
       this.roomMembers = onMembersChage(this.currentRoomId);
       console.log("メンバーが入室しました！");
     }
-    
+
     console.log("currentRoomId is:",this.currentRoomId);
-    
+
   }
 }
 </script>
