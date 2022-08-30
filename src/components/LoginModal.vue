@@ -1,46 +1,41 @@
 <template>
   <!--<div class="ui main container">-->
     <!-- 基本的なコンテンツはここに記載する -->
-    <div class="right menu">
-      <button v-on:click="show" class="ui inverted basic button">
-        ログイン
-      </button>
-    <!--</div>-->
-      <modal name="hello-world" :draggable="true" :resizable="true">
-        <div class="modal-header">
-          <h2>ログイン</h2>
-        </div>
-        <div class="modal-body">
-          <form class="ui large form" v-on:submit="submit">
-            <div class="field">
-              <div class="ui left icon input">
-                <i class="user icon"></i>
-                <input type="email" placeholder="e-mail" v-model="email">
-              </div>
+  <div class="right menu">
+    <button v-on:click="show" class="ui inverted basic button">
+      ログイン
+    </button>
+    <modal name="hello-world" :draggable="true" :resizable="true">
+      <div class="modal-header">
+        <h2>ログイン</h2>
+      </div>
+      <div class="modal-body">
+        <form class="ui large form" v-on:submit="submit">
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="user icon"></i>
+              <input type="email" placeholder="e-mail" v-model="email">
             </div>
-            <div class="field">
-              <div class="ui left icon input">
-                <i class="lock icon"></i>
-                <input type="password" required placeholder="Password" v-model="password">
-              </div>
+          </div>
+          <div class="field">
+            <div class="ui left icon input">
+              <i class="lock icon"></i>
+              <input type="password" required placeholder="Password" v-model="password">
             </div>
-            <div class="field" v-if="!isLogin">
-              <div class="ui left icon input">
-                <i class="tag icon"></i>
-                <input type="text" placeholder="Name" v-model="name">
-              </div>
+          </div>
+          <div class="field" v-if="!isLogin">
+            <div class="ui left icon input">
+              <i class="tag icon"></i>
+              <input type="text" placeholder="Name" v-model="name">
             </div>
-            <li v-if="err" class="err-msg">{{err}}</li>
-            <button class="ui huge gray fluid button" type="submit">{{submitText}}</button>
-          </form>
-
-          <button v-on:click="hide">閉じる</button>
-        </div>
-
-      </modal>
-    </div>
-
-
+          </div>
+          <li v-if="err" class="err-msg">{{err}}</li>
+          <button class="ui huge gray fluid button" type="submit">{{submitText}}</button>
+        </form>
+        <button class="ui huge gray fluid button" v-on:click="hide" id ="close">閉じる</button>
+      </div>
+    </modal>
+  </div>
 </template>
 <script>
   // 必要なものはここでインポートする
@@ -53,7 +48,6 @@
     name: 'LoginModal',
     components: {
       // 読み込んだコンポーネント名をここに記述する
-
     },
     data() {
       // Vue.jsで使う変数はここに記述する
@@ -121,9 +115,14 @@
 </script>
 <style scoped>
   /* このコンポーネントだけに適用するCSSは */
-  .modal-header,
+  .modal-header{
+    margin: 5px;
+  }
   .modal-body {
     padding: 5px 25px;
+  }
+  #close{
+    margin-top: 6px;
   }
 
   .modal-header {
