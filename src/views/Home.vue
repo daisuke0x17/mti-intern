@@ -184,7 +184,7 @@ h3 {
       </div>
 
       <!-- ゲームモード -->
-      <div class="five wide column">
+      <div class="five wide column stackable">
         <div class="mode-wrapper">
           <!-- 一人で作業ボタン -->
           <div class="ui button alone-mode" @click="show">
@@ -226,9 +226,11 @@ h3 {
                   教えてもらった<br />
                   ルームIDから参加する
                 </p>
-                <input v-model="joinRoomId" />
               </div>
             </div>
+          </div>
+          <div class="ui input focus">
+            <input type="text" v-model="joinRoomId" placeholder="Room IDを入力"/>
           </div>
         </div>
       </div>
