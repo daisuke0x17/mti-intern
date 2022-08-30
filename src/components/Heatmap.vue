@@ -73,5 +73,6 @@ export default {
     width:600px;
     transform: scale(1.4);
     margin-left:110px;
+    margin-top: 100px;
 }
 </style>
