@@ -122,9 +122,9 @@
           <form class="ui large form" v-on:submit="submit">
             <div class="field">
               <div class="ui input">
-                <div>作業時間</div>
+                <div class="time">作業</div>
                 <select v-model="selectMinute">
-                  <option disabled value=""></option>
+                  <option disabled value="時間"></option>
                   <option v-for="minute in workMinute" :value="minute.work" :key="minute.minute">
                     {{minute.work}}
                     <!--{{minute.minute}}時間の分数-->
@@ -134,9 +134,9 @@
             </div>
             <div class="field">
               <div class="ui input">
-                <div>休憩時間</div>
+                <div class="time">休憩</div>
                 <select v-model="selectMinute">
-                  <option disabled value=""></option>
+                  <option disabled value="時間"></option>
                   <option v-for="minute in restMinute" :value="minute.rest" :key="minute.minute">
                     {{minute.rest}}
                   </option>
@@ -144,15 +144,9 @@
               </div>
             </div>
             <li v-if="err" class="err-msg">{{err}}</li>
-            <div class="fields">
-              <div class="field">
-                <button class="ui button" v-on:click="hide">閉じる</button>
-              </div>
-              <div class="field">
-                <button class="ui button" @click="gotoRoom" type="submit">はじめる</button>
-              </div>
-            </div>
+                <button class="ui huge gray fluid button" v-on:click="hide">閉じる</button>
           </form>
+          <button class="ui huge gray fluid button" @click="gotoRoom" type="submit">はじめる</button>
         </div>
       </modal>
       <!--ここまで北松-->
@@ -177,9 +171,9 @@
           <form class="ui large form" v-on:submit="submit">
             <div class="field">
               <div class="ui input">
-                <div>作業時間</div>
+                <div class="time">作業</div>
                 <select v-model="selectMinute">
-                  <option disabled value=""></option>
+                  <option disabled value="時間"></option>
                   <option v-for="minute in workMinute" :value="minute.work" :key="minute.minute">
                     {{minute.work}}
                     <!--{{minute.minute}}時間の分数-->
@@ -189,9 +183,9 @@
             </div>
             <div class="field">
               <div class="ui input">
-                <div>休憩時間</div>
+                <div class="time">休憩</div>
                 <select v-model="selectMinute">
-                  <option disabled value=""></option>
+                  <option disabled value="時間"></option>
                   <option v-for="minute in restMinute" :value="minute.rest" :key="minute.minute">
                     {{minute.rest}}
                   </option>
@@ -199,15 +193,9 @@
               </div>
             </div>
             <li v-if="err" class="err-msg">{{err}}</li>
-            <div class="fields">
-              <div class="field">
-                <button class="ui button" v-on:click="hide">閉じる</button>
-              </div>
-              <div class="field">
-                <button class="ui button" @click="createRoom" type="submit">はじめる</button>
-              </div>
-            </div>
+                <button class="ui huge gray fluid button" v-on:click="hide">閉じる</button>
           </form>
+          <button class="ui huge gray fluid button" @click="createRoom" type="submit">はじめる</button>
         </div>
       </modal>
         <div class="ui blue button" @click="joinRoom">
@@ -260,7 +248,7 @@
         },
         isLoading: false,
         joinRoomId:null,
-        selectedMinute:'',
+        selectedMinute:'時間',
         workMinute:[
           {minute:30, work:'30分'},
           {minute:45, work:'45分'},
@@ -347,5 +335,20 @@
   }
 </script>
 <style scoped>
-
+  .modal-header{
+    margin: 8px;
+    padding: 8px;
+  }
+  .modal-body {
+    padding: 5px 25px;
+  }
+  .time {
+    padding: 5px;
+  }
+  #close{
+    margin-top: 6px;
+  }
+  .modal-header {
+    border-bottom: 1px solid #ddd;
+  }
 </style>

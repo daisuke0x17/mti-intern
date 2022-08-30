@@ -4,9 +4,9 @@
     <div class="right menu">
       <button v-on:click="show" class="massive ui orange button"><div class="buttonStyle">始めてみる<div class="iconStyle"><i class="large angle right icon"></i></div></div></button>
       <modal name="hajimeru" :draggable="true" :resizable="true">
-        <!--<div class="modal-header">-->
-        <!--  <h2>ログイン</h2>-->
-        <!--</div>-->
+        <div class="modal-header">
+        <h2>{{submitText}}</h2>
+        </div>
         <div class="modal-body">
           <form class="ui large form" v-on:submit="submit">
             <div class="field">
@@ -121,7 +121,10 @@
 </script>
 <style scoped>
   /* このコンポーネントだけに適用するCSSは */
-  .modal-header,
+  .modal-header{
+    margin:8px;
+    padding:8px;
+  }
   .modal-body {
     padding: 5px 25px;
   }
