@@ -1,6 +1,6 @@
 <template>
     <div class="headercontainer">
-        <img class="logo_size" src="../assets/Logo_NIKE.svg.png" alt="aimani">
+        <img class="logo_size" src="../assets/images/aimani.png" alt="aimani">
         <LoginModal ></LoginModal>
     </div>
 </template>
@@ -8,7 +8,7 @@
 <script>
 import accountFunc from "../functions/accountFunc";
 import LoginModal from "../components/LoginModal.vue";
-const {logout} = accountFunc(); 
+const { logout } = accountFunc(); 
 //const {logIn,signUp} = accountFunc();
     export default {
         name:"Menu",

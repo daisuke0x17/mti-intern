@@ -54,8 +54,10 @@
     border-radius: 5%;
     transition:all 0.3s;
   }
+
   .common-btn:hover{
     background: rgb(238, 238, 238);
+
   }
   .tutorial-border{
     border-color: rgb(204,32,41);
@@ -111,9 +113,11 @@
 </style>
 <template>
   <div class="ui main container">
+
     <!-- ここから -->
     <!-- 上側 -->
     <div class="ui grid stackable top-wrapper">
+
       <div class="eleven wide column">
         <div class="ui four column grid">
           <!-- プロフィール -->
@@ -184,12 +188,14 @@
 
       <!-- ゲームモード -->
       <div class="five wide column">
+
         <div class="mode-wrapper">
           <!-- 一人で作業ボタン -->
           <div class="ui button alone-mode" @click="gotoRoom">
             <div class="mode-btn-wrapper">
               <div>
                 <i class="user outline icon mode-btn-icon"></i>
+
               </div>
               <div>
                 <h3 class="white">一人で作業</h3>
@@ -197,6 +203,7 @@
               </div>
             </div>
           </div>
+
           <!-- みんなで作業ボタン -->
           <div class="ui button together-mode" @click="createRoom">
             <div class="mode-btn-wrapper">
@@ -220,6 +227,112 @@
                 <h3 class="white">ルームに参加</h3>
                 <p class="white">教えてもらった<br>
                   ルームIDから参加する</p>
+        </div>
+      <!--ここから北松がmodalの処理を書きました。-->
+      <modal name="hello-world" :draggable="true" :resizable="true">
+        <div class="modal-header">
+          <h2>はじめますか</h2>
+        </div>
+        <div class="modal-body">
+          <form class="ui large form" v-on:submit="submit">
+            <div class="field">
+              <div class="ui input">
+                <div>作業時間</div>
+                <select v-model="selectMinute">
+                  <option disabled value=""></option>
+                  <option v-for="minute in workMinute" :value="minute.work" :key="minute.minute">
+                    {{minute.work}}
+                    <!--{{minute.minute}}時間の分数-->
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui input">
+                <div>休憩時間</div>
+                <select v-model="selectMinute">
+                  <option disabled value=""></option>
+                  <option v-for="minute in restMinute" :value="minute.rest" :key="minute.minute">
+                    {{minute.rest}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <li v-if="err" class="err-msg">{{err}}</li>
+            <div class="fields">
+              <div class="field">
+                <button class="ui button" v-on:click="hide">閉じる</button>
+              </div>
+              <div class="field">
+                <button class="ui button" @click="gotoRoom" type="submit">はじめる</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </modal>
+      <!--ここまで北松-->
+        <div class="ui green button" v-on:click="choise">
+          <div class="ui header">
+            <i class="user outline icon"></i>
+            <div class="content white">
+              みんなで作業
+              <div class="sub header">
+                <p>ルームのオーナーになって</p>
+                <p>参加者を募集します</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      <!--ここから北松がmodalの処理を書きました。-->
+      <modal name="choise_minute" :draggable="true" :resizable="true">
+        <div class="modal-header">
+          <h2>はじめますか</h2>
+        </div>
+        <div class="modal-body">
+          <form class="ui large form" v-on:submit="submit">
+            <div class="field">
+              <div class="ui input">
+                <div>作業時間</div>
+                <select v-model="selectMinute">
+                  <option disabled value=""></option>
+                  <option v-for="minute in workMinute" :value="minute.work" :key="minute.minute">
+                    {{minute.work}}
+                    <!--{{minute.minute}}時間の分数-->
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui input">
+                <div>休憩時間</div>
+                <select v-model="selectMinute">
+                  <option disabled value=""></option>
+                  <option v-for="minute in restMinute" :value="minute.rest" :key="minute.minute">
+                    {{minute.rest}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <li v-if="err" class="err-msg">{{err}}</li>
+            <div class="fields">
+              <div class="field">
+                <button class="ui button" v-on:click="hide">閉じる</button>
+              </div>
+              <div class="field">
+                <button class="ui button" @click="createRoom" type="submit">はじめる</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </modal>
+        <div class="ui blue button" @click="joinRoom">
+          <div class="ui header">
+            <i class="sign in alternate icon"></i>
+            <div class="content white">
+              ルームに参加
+               <div class="sub header">
+                教えてもらった
+                ルームIDから参加する
               </div>
             </div>
           </div>
@@ -265,6 +378,21 @@
         },
         isLoading: false,
         joinRoomId:null,
+        selectedMinute:'',
+        workMinute:[
+          {minute:30, work:'30分'},
+          {minute:45, work:'45分'},
+          {minute:60, work:'60分'},
+          {minute:75, work:'75分'},
+          {minute:90, work:'90分'},
+        ],
+        restMinute:[
+          {minute:5 , rest:'5分'},
+          {minute:10, rest:'10分'},
+          {minute:15, rest:'15分'},
+          {minute:20, rest:'20分'},
+          {minute:25, rest:'25分'},
+        ]
       };
     },
     components: {
@@ -323,6 +451,9 @@
       },
       show: function() {
         this.$modal.show('hello-world')
+      },
+      choise: function(){
+        this.$modal.show('choise_minute')
       },
       hide: function() {
         this.$modal.hide('hello-world')

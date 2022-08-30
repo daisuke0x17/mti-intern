@@ -1,12 +1,11 @@
 <template>
-  <!--<div class="ui main container">-->
-    <!-- 基本的なコンテンツはここに記載する -->
+  <div>
     <div class="right menu">
       <button v-on:click="show" class="ui inverted basic button">
         ログイン
       </button>
-    <!--</div>-->
-      <modal name="hello-world" :draggable="true" :resizable="true">
+    </div>
+            <modal name="hello-world" :draggable="true" :resizable="true">
         <div class="modal-header">
           <h2>ログイン</h2>
         </div>
@@ -32,19 +31,13 @@
             </div>
             <li v-if="err" class="err-msg">{{err}}</li>
             <button class="ui huge gray fluid button" type="submit">{{submitText}}</button>
+            <button class="ui huge gray fluid button" v-on:click="hide">閉じる</button>
           </form>
-
-          <button v-on:click="hide">閉じる</button>
         </div>
-
       </modal>
     </div>
-
-
 </template>
 <script>
-  // 必要なものはここでインポートする
-  // @は/srcの同じ意味です
   import accountFunc from "../functions/accountFunc";
   const { logIn, signUp } = accountFunc();
 
@@ -129,4 +122,5 @@
   .modal-header {
     border-bottom: 1px solid #ddd;
   }
+
 </style>
