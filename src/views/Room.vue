@@ -86,6 +86,7 @@ h1 {
 }
 </style>
 <template>
+
   <div class="oya">
     <!-- 基本的なコンテンツはここに記載する -->
     <div class="mainContent">
@@ -124,6 +125,7 @@ h1 {
       <div>
         <button @click="getoutRoom" class="ui button">ルームを出る</button>
       </div>
+
     </div>
   </div>
 </template>
@@ -170,6 +172,7 @@ export default {
   mounted() {
     window.addEventListener("beforeunload", this.confirmSave);
   },
+
   unmounted() {
     window.removeEventListener("beforeload", this.confirmSave);
   },
@@ -177,6 +180,7 @@ export default {
     // Vue.jsで使う関数はここで記述する
     confirm() {
       return window.confirm("ページを離脱してもよろしいですか？");
+
     },
     setTime() {},
     endTask() {
@@ -220,6 +224,8 @@ export default {
       );
       console.log("メンバーが入室しました！");
     }
+
   },
 };
+
 </script>

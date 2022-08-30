@@ -2,13 +2,14 @@
   <div  class="heatmapStyle">
     <div class="ui main container">
       <!-- 基本的なコンテンツはここに記載する -->
-      <calendarHeatmap tooltip-unit="分寿命を伸ばしました！" :values="histories" :end-date="today" :max="110" :range-color="[                                                                                                                     '#ebedf0',
-  'rgba(255,202,43,0.4)',
-  'rgba(255,202,43,0.6)',
-  'rgba(255,202,43,0.8)',
-  'rgba(255,202,43,1.0)',
-]"></calendarHeatmap>
-      <button @click="print">print</button>
+      <calendarHeatmap tooltip-unit="分寿命を伸ばしました！" :values="histories" :end-date="today" :max="110" :range-color="
+      [
+        '#ebedf0',
+        'rgba(255,202,43,0.4)',
+        'rgba(255,202,43,0.6)',
+        'rgba(255,202,43,0.8)',
+        'rgba(255,202,43,1.0)',
+      ]"></calendarHeatmap>
     </div>
   </div>
 </template>
@@ -36,7 +37,7 @@ export default {
   },
   computed: {
   // 計算した結果を変数として利用したいときはここに記述する
-    
+
   },
   mounted(){
       this.today = this.formatday(new Date());
@@ -63,7 +64,14 @@ export default {
 </script>
 <style scoped>
 /* このコンポーネントだけに適用するCSSは */
+*{
+  padding:0;
+  margin:0;
+  box-sizing: border-box;
+}
 .heatmapStyle{
     width:600px;
+    transform: scale(1.4);
+    margin-left:110px;
 }
 </style>
