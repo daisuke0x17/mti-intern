@@ -78,11 +78,11 @@ font {
   justify-content: space-between;
 }
 .mode-btn-wrapper {
-  height: 100px;
+  height: 80px;
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  gap: 2rem;
+  gap: 1rem;
 }
 .mode-btn-icon {
   font-size: 4.5rem;
