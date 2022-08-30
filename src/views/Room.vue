@@ -71,12 +71,14 @@ h1 {
 }
 .center {
   width: 40%;
+  margin-top: 200px;
 }
 .left {
   display: flex;
   flex-direction: column;
   /* justify-content: space-between; */
   height: 100%;
+  width: 30%;
 }
 .oya {
   height: 100vh;
@@ -118,6 +120,7 @@ h1 {
           </div>
         </div>
       </div>
+      <div class="left" v-else></div>
       <div class="center">
         <Timer> </Timer>
       </div>
@@ -170,6 +173,7 @@ export default {
   mounted() {
     window.addEventListener("beforeunload", this.confirmSave);
   },
+
   unmounted() {
     window.removeEventListener("beforeload", this.confirmSave);
   },

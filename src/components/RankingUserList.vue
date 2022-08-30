@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="rankingStyle">
     <div>
       <div v-for="rank in 4" :key="rank">
         {{rank}}
@@ -57,4 +57,7 @@ export default {
 </script>
 <style scoped>
 /* このコンポーネントだけに適用するCSSは */
+.rankingStyle{
+  margin-top: 100px;
+}
 </style>
