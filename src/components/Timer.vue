@@ -1,17 +1,16 @@
 <template>
   <div id="timer">
     <div class="timer">
-      <div v-if="currentMode === 'task'"><h1>残り作業時間</h1></div>
+      <div v-if="currentMode === 'task'">
+        <h1>残り作業時間</h1></div>
       <div v-else>
-        <h1>残り休憩時間</h1>
-        <h1>ここになんか置く</h1>
+        <div>
+          <img :src="imgSrc" width="400px">
+        </div>
       </div>
+        <h1>残り休憩時間</h1>
       <div class="time">
         {{ formatTime }}
-      </div>
-      <div class="timer-btn">
-        <!-- <button class="ui primary button" @click="start">Start</button>
-        <button class="ui red button" @click="stop">Stop</button> -->
       </div>
     </div>
   </div>
@@ -34,10 +33,11 @@ export default {
       taskTime: null,
       restTime: null,
       currentMode: null,
+      numOfImg: 2
     };
   },
   created() {
-    this.taskTime = window.localStorage.getItem("taskTime");
+    this.taskTime = window.localStorage.getItem(1);
     this.restTime = window.localStorage.getItem("restTime");
 
     console.log(this.taskTime, ":", this.restTime);
@@ -56,6 +56,10 @@ export default {
         }
       );
       return timeStrings[0] + ":" + timeStrings[1];
+    },
+    imgSrc: function (){
+      const index = Math.floor(Math.random() * this.numOfImg)+1
+      return require("../assets/images/stretch"+ index +".png");
     },
   },
   methods: {
@@ -106,15 +110,23 @@ export default {
 </script>
 <style scoped>
 /* このコンポーネントだけに適用するCSSは */
+*{
+  padding: 0;
+  margin: 0;
+}
 .timer {
   display: flex;
   flex-direction: column;
-  align-items: center;
   justify-content: center;
-  gap: 5rem;
+  align-items: center;
 }
 .time {
   font-size: 10rem;
   color: #fff;
+}
+
+h1{
+  color:#fff;
+  margin-bottom: 3rem;
 }
 </style>
