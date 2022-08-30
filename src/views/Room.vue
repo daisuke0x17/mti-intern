@@ -71,12 +71,14 @@ h1 {
 }
 .center {
   width: 40%;
+  margin-top: 200px;
 }
 .left {
   display: flex;
   flex-direction: column;
   /* justify-content: space-between; */
   height: 100%;
+  width: 30%;
 }
 .oya {
   height: 100vh;
@@ -86,7 +88,6 @@ h1 {
 }
 </style>
 <template>
-
   <div class="oya">
     <!-- 基本的なコンテンツはここに記載する -->
     <div class="mainContent">
@@ -119,13 +120,13 @@ h1 {
           </div>
         </div>
       </div>
+      <div class="left" v-else></div>
       <div class="center">
         <Timer> </Timer>
       </div>
       <div>
         <button @click="getoutRoom" class="ui button">ルームを出る</button>
       </div>
-
     </div>
   </div>
 </template>
@@ -180,7 +181,6 @@ export default {
     // Vue.jsで使う関数はここで記述する
     confirm() {
       return window.confirm("ページを離脱してもよろしいですか？");
-
     },
     setTime() {},
     endTask() {
@@ -224,8 +224,6 @@ export default {
       );
       console.log("メンバーが入室しました！");
     }
-
   },
 };
-
 </script>
