@@ -227,6 +227,9 @@
                 <h3 class="white">ルームに参加</h3>
                 <p class="white">教えてもらった<br>
                   ルームIDから参加する</p>
+              </div>
+            </div>
+          </div>
         </div>
       <!--ここから北松がmodalの処理を書きました。-->
       <modal name="hello-world" :draggable="true" :resizable="true">
