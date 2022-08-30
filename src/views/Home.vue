@@ -128,6 +128,43 @@ h3 {
                   </font>
                 </font>
               </div>
+
+      <!--ここから北松がmodalの処理を書きました。-->
+      <modal name="hello-world" :draggable="true" :resizable="true">
+        <div class="modal-header">
+          <h2>はじめますか</h2>
+        </div>
+        <div class="modal-body">
+          <form class="ui large form" v-on:submit="submit">
+            <div class="field">
+              <div class="ui input">
+                <div class="time">作業</div>
+                <select v-model="selectMinute">
+                  <option disabled value="時間"></option>
+                  <option v-for="minute in workMinute" :value="minute.work" :key="minute.minute">
+                    {{minute.work}}
+                    <!--{{minute.minute}}時間の分数-->
+                  </option>
+                </select>
+              </div>
+            </div>
+            <div class="field">
+              <div class="ui input">
+                <div class="time">休憩</div>
+                <select v-model="selectMinute">
+                  <option disabled value="時間"></option>
+                  <option v-for="minute in restMinute" :value="minute.rest" :key="minute.minute">
+                    {{minute.rest}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <li v-if="err" class="err-msg">{{err}}</li>
+                <button class="ui huge gray fluid button" v-on:click="hide">閉じる</button>
+          </form>
+          <button class="ui huge gray fluid button" @click="gotoRoom" type="submit">はじめる</button>
+        </div>
+      </modal>
               <div class="profile-life">
                 <p class="extend-life">伸びた寿命</p>
                 <div class="life-minutes">
@@ -181,6 +218,7 @@ h3 {
             </button>
           </div>
         </div>
+
       </div>
 
       <!-- ゲームモード -->
@@ -420,4 +458,22 @@ export default {
   },
 };
 </script>
-<style scoped></style>
+<style scoped>
+  .modal-header{
+    margin: 8px;
+    padding: 8px;
+  }
+  .modal-body {
+    padding: 5px 25px;
+  }
+  .time {
+    padding: 5px;
+  }
+  #close{
+    margin-top: 6px;
+  }
+  .modal-header {
+    border-bottom: 1px solid #ddd;
+  }
+</style>
+

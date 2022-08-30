@@ -116,7 +116,8 @@
 <style scoped>
   /* このコンポーネントだけに適用するCSSは */
   .modal-header{
-    margin: 5px;
+    margin: 8px;
+    padding: 8px;
   }
   .modal-body {
     padding: 5px 25px;
