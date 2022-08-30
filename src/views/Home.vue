@@ -15,7 +15,7 @@
 }
 /* 画面下部 */
 .bottom-wrapper {
-  height: 50vh;
+  height: 40vh;
 }
 /* テスト */
 .profile-wrapper {
@@ -108,6 +108,14 @@ h3 {
 }
 .gray {
   color: #666666;
+}
+.zindex {
+  z-index: 10;
+}
+.git-hub {
+  margin-left: 110px;
+  margin-top: 100px;
+  height: 100px;
 }
 </style>
 <template>
@@ -230,7 +238,7 @@ h3 {
               </div>
             </div>
           </div>
-          <div class="ui input focus">
+          <div class="ui input focus zindex">
             <input
               type="text"
               v-model="joinRoomId"
@@ -242,10 +250,10 @@ h3 {
     </div>
     <!-- 下側 -->
     <div class="ui grid stackable bottom-wrapper">
-      <div class="four wide column">
+      <div class="four wide column sashisuseso">
         <RankingUserList></RankingUserList>
       </div>
-      <div class="twelve wide column git-hub">
+      <div class="git-hub">
         <Heatmap></Heatmap>
       </div>
     </div>
@@ -446,5 +454,8 @@ export default {
   width: 80px;
   display: flex;
   align-items: center;
+}
+.sashisuseso {
+  height: 150px;
 }
 </style>
