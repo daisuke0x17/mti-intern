@@ -187,7 +187,7 @@ h3 {
       <div class="five wide column">
         <div class="mode-wrapper">
           <!-- 一人で作業ボタン -->
-          <div class="ui button alone-mode" @click="gotoRoom">
+          <div class="ui button alone-mode" @click="show">
             <div class="mode-btn-wrapper">
               <div>
                 <i class="user outline icon mode-btn-icon"></i>
@@ -200,7 +200,7 @@ h3 {
           </div>
 
           <!-- みんなで作業ボタン -->
-          <div class="ui button together-mode" @click="createRoom">
+          <div class="ui button together-mode" @click="choise">
             <div class="mode-btn-wrapper">
               <div>
                 <i class="users outline icon mode-btn-icon"></i>
@@ -215,73 +215,23 @@ h3 {
             </div>
           </div>
           <!-- ルームに参加ボタン -->
-          <div class="ui button join-mode" @click="joinRoom">
+          <div class="ui button join-mode" @click="show">
             <div class="mode-btn-wrapper">
               <div>
                 <i class="sign in alternate icon mode-btn-icon"></i>
               </div>
               <div>
                 <h3 class="white">ルームに参加</h3>
-                <p class="white">教えてもらった<br>
-                  ルームIDから参加する</p>
-        </div>
-      <!--ここから北松がmodalの処理を書きました。-->
-      <modal name="hello-world" :draggable="true" :resizable="true">
-        <div class="modal-header">
-          <h2>はじめますか</h2>
-        </div>
-        <div class="modal-body">
-          <form class="ui large form" v-on:submit="submit">
-            <div class="field">
-              <div class="ui input">
-                <div>作業時間</div>
-                <select v-model="selectMinute">
-                  <option disabled value=""></option>
-                  <option v-for="minute in workMinute" :value="minute.work" :key="minute.minute">
-                    {{minute.work}}
-                    <!--{{minute.minute}}時間の分数-->
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div class="field">
-              <div class="ui input">
-                <div>休憩時間</div>
-                <select v-model="selectMinute">
-                  <option disabled value=""></option>
-                  <option v-for="minute in restMinute" :value="minute.rest" :key="minute.minute">
-                    {{minute.rest}}
-                  </option>
-                </select>
-              </div>
-            </div>
-            <li v-if="err" class="err-msg">{{err}}</li>
-            <div class="fields">
-              <div class="field">
-                <button class="ui button" v-on:click="hide">閉じる</button>
-              </div>
-              <div class="field">
-                <button class="ui button" @click="gotoRoom" type="submit">はじめる</button>
-              </div>
-            </div>
-          </form>
-        </div>
-      </modal>
-      <!--ここまで北松-->
-        <div class="ui green button" v-on:click="choise">
-          <div class="ui header">
-            <i class="user outline icon"></i>
-            <div class="content white">
-              みんなで作業
-              <div class="sub header">
-                <p>ルームのオーナーになって</p>
-                <p>参加者を募集します</p>
+                <p class="white">
+                  教えてもらった<br />
+                  ルームIDから参加する
+                </p>
               </div>
             </div>
           </div>
         </div>
         <!--ここから北松がmodalの処理を書きました。-->
-        <modal name="choise_minute" :draggable="true" :resizable="true">
+        <modal name="hello-world" :draggable="true" :resizable="true">
           <div class="modal-header">
             <h2>はじめますか</h2>
           </div>
@@ -299,6 +249,71 @@ h3 {
                     >
                       {{ minute.work }}
                       <!--{{minute.minute}}時間の分数-->
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <div class="field">
+                <div class="ui input">
+                  <div>休憩時間</div>
+                  <select v-model="selectMinute">
+                    <option disabled value=""></option>
+                    <option
+                      v-for="minute in restMinute"
+                      :value="minute.rest"
+                      :key="minute.minute"
+                    >
+                      {{ minute.rest }}
+                    </option>
+                  </select>
+                </div>
+              </div>
+              <li v-if="err" class="err-msg">{{ err }}</li>
+              <div class="fields">
+                <div class="field">
+                  <button class="ui button" v-on:click="hide">閉じる</button>
+                </div>
+                <div class="field">
+                  <button class="ui button" @click="submit" type="submit">
+                    はじめる
+                  </button>
+                </div>
+              </div>
+            </form>
+          </div>
+        </modal>
+        <!--         
+        <div class="ui green button" v-on:click="choise">
+          <div class="ui header">
+            <i class="user outline icon"></i>
+            <div class="content white">
+              みんなで作業
+              <div class="sub header">
+                <p>ルームのオーナーになって</p>
+                <p>参加者を募集します</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        
+        <modal name="choise_minute" :draggable="true" :resizable="true">
+          <div class="modal-header">
+            <h2>はじめますか</h2>
+          </div>
+          <div class="modal-body">
+            <form class="ui large form" v-on:submit="submit">
+              <div class="field">
+                <div class="ui input">
+                  <div>作業時間</div>
+                  <select v-model="selectMinute">
+                    <option disabled value=""></option>
+                    <option
+                      v-for="minute in workMinute"
+                      :value="minute.work"
+                      :key="minute.minute"
+                    >
+                      {{ minute.work }}
+     
                     </option>
                   </select>
                 </div>
@@ -348,7 +363,7 @@ h3 {
               v-model="joinRoomId"
             />
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
     <!-- 下側 -->
@@ -387,7 +402,7 @@ export default {
       },
       isLoading: false,
       joinRoomId: null,
-      selectedMinute: "",
+      selectedJenre: null,
       workMinute: [
         { minute: 30, work: "30分" },
         { minute: 45, work: "45分" },
@@ -434,6 +449,13 @@ export default {
     }
   },
   methods: {
+    submit() {
+      if (this.selectedJenre === "multi") {
+        this.createRoom();
+      } else if (this.selectedJenre === "single") {
+        this.gotoRoom();
+      }
+    },
     logout() {
       logout(() => this.$router.push({ name: "Login" }));
     },
@@ -462,10 +484,12 @@ export default {
       window.localStorage.setItem("restTime", this.user.restTime);
     },
     show: function () {
+      this.selectedJenre = "single";
       this.$modal.show("hello-world");
     },
     choise: function () {
-      this.$modal.show("choise_minute");
+      this.selectedJenre = "multi";
+      this.$modal.show("hello-world");
     },
     hide: function () {
       this.$modal.hide("hello-world");
