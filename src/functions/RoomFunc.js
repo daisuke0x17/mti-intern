@@ -127,6 +127,7 @@ export default function () {
         userId: userId,
         userName: user.username,
       });
+      console.log("roomId is", roomId);
       window.localStorage.setItem("roomId", roomId);
       window.localStorage.setItem("isAlone", false);
       then();

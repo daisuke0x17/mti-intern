@@ -19,6 +19,7 @@
 <script>
 // 必要なものはここでインポートする
 // @は/srcの同じ意味です
+import { getFirestore, getDoc, doc } from "firebase/firestore";
 export default {
   name: "Timer",
   components: {
@@ -37,10 +38,27 @@ export default {
     };
   },
   created() {
-    this.taskTime = window.localStorage.getItem("taskTime");
-    this.restTime = window.localStorage.getItem("restTime");
+    const tmp = {
+      task: window.localStorage.getItem("taskTime"),
+      rest: window.localStorage.getItem("restTime"),
+    };
+    this.currentRoomId = window.localStorage.getItem("roomId");
 
-    console.log(this.taskTime, ":", this.restTime);
+    if (tmp.task === "null" || tmp.rest === "null") {
+      console.log("getted");
+      const db = getFirestore();
+      const data = getDoc(doc(db, "rooms", `${this.currentRoomId}`));
+      console.log("data is", this.currentRoomId);
+      data.then((room) => {
+        console.log(room.data());
+        this.taskTime = room.data().taskTime;
+        this.restTIme = room.data().restTime;
+        console.log(this.taskTime, ":", this.restTime);
+      });
+    } else {
+      this.taskTime = tmp.task;
+      this.restTime = tmp.rest;
+    }
     this.startTask();
   },
   computed: {
