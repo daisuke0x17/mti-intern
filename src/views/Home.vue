@@ -15,7 +15,7 @@
 }
 /* 画面下部 */
 .bottom-wrapper {
-  height: 50vh;
+  height: 40vh;
 }
 /* テスト */
 .profile-wrapper {
@@ -109,6 +109,14 @@ h3 {
 .gray {
   color: #666666;
 }
+.zindex {
+  z-index: 10;
+}
+.git-hub {
+  margin-left: 110px;
+  margin-top: 100px;
+  height: 100px;
+}
 </style>
 <template>
   <div class="ui main container">
@@ -129,42 +137,6 @@ h3 {
                 </font>
               </div>
 
-      <!--ここから北松がmodalの処理を書きました。-->
-      <modal name="hello-world" :draggable="true" :resizable="true">
-        <div class="modal-header">
-          <h2>はじめますか</h2>
-        </div>
-        <div class="modal-body">
-          <form class="ui large form" v-on:submit="submit">
-            <div class="field">
-              <div class="ui input">
-                <div class="time">作業</div>
-                <select v-model="selectMinute">
-                  <option disabled value="時間"></option>
-                  <option v-for="minute in workMinute" :value="minute.work" :key="minute.minute">
-                    {{minute.work}}
-                    <!--{{minute.minute}}時間の分数-->
-                  </option>
-                </select>
-              </div>
-            </div>
-            <div class="field">
-              <div class="ui input">
-                <div class="time">休憩</div>
-                <select v-model="selectMinute">
-                  <option disabled value="時間"></option>
-                  <option v-for="minute in restMinute" :value="minute.rest" :key="minute.minute">
-                    {{minute.rest}}
-                  </option>
-                </select>
-              </div>
-            </div>
-            <li v-if="err" class="err-msg">{{err}}</li>
-                <button class="ui huge gray fluid button" v-on:click="hide">閉じる</button>
-          </form>
-          <button class="ui huge gray fluid button" @click="gotoRoom" type="submit">はじめる</button>
-        </div>
-      </modal>
               <div class="profile-life">
                 <p class="extend-life">伸びた寿命</p>
                 <div class="life-minutes">
@@ -218,7 +190,6 @@ h3 {
             </button>
           </div>
         </div>
-
       </div>
 
       <!-- ゲームモード -->
@@ -267,18 +238,22 @@ h3 {
               </div>
             </div>
           </div>
-          <div class="ui input focus">
-            <input type="text" v-model="joinRoomId" placeholder="Room IDを入力"/>
+          <div class="ui input focus zindex">
+            <input
+              type="text"
+              v-model="joinRoomId"
+              placeholder="Room IDを入力"
+            />
           </div>
         </div>
       </div>
     </div>
     <!-- 下側 -->
     <div class="ui grid stackable bottom-wrapper">
-      <div class="four wide column">
+      <div class="four wide column sashisuseso">
         <RankingUserList></RankingUserList>
       </div>
-      <div class="twelve wide column git-hub">
+      <div class="git-hub">
         <Heatmap></Heatmap>
       </div>
     </div>
@@ -291,12 +266,12 @@ h3 {
         <form class="ui large form" v-on:submit="submit">
           <div class="field">
             <div class="ui input">
-              <div>作業時間</div>
-              <select v-model="selectMinute">
+              <p class="kakikukeko">作業時間</p>
+              <select v-model="user.taskTime">
                 <option disabled value=""></option>
                 <option
                   v-for="minute in workMinute"
-                  :value="minute.work"
+                  :value="minute.minute"
                   :key="minute.minute"
                 >
                   {{ minute.work }}
@@ -307,12 +282,12 @@ h3 {
           </div>
           <div class="field">
             <div class="ui input">
-              <div>休憩時間</div>
-              <select v-model="selectMinute">
+              <p class="kakikukeko">休憩時間</p>
+              <select v-model="user.restTime">
                 <option disabled value=""></option>
                 <option
                   v-for="minute in restMinute"
-                  :value="minute.rest"
+                  :value="minute.minute"
                   :key="minute.minute"
                 >
                   {{ minute.rest }}
@@ -354,8 +329,8 @@ export default {
         username: null,
         icon: null,
         extendedLifespan: null,
-        taskTime: 50,
-        restTime: 10,
+        taskTime: null,
+        restTime: null,
       },
       isLoading: false,
       joinRoomId: null,
@@ -459,21 +434,28 @@ export default {
 };
 </script>
 <style scoped>
-  .modal-header{
-    margin: 8px;
-    padding: 8px;
-  }
-  .modal-body {
-    padding: 5px 25px;
-  }
-  .time {
-    padding: 5px;
-  }
-  #close{
-    margin-top: 6px;
-  }
-  .modal-header {
-    border-bottom: 1px solid #ddd;
-  }
+.modal-header {
+  margin: 8px;
+  padding: 8px;
+}
+.modal-body {
+  padding: 5px 25px;
+}
+.time {
+  padding: 5px;
+}
+#close {
+  margin-top: 6px;
+}
+.modal-header {
+  border-bottom: 1px solid #ddd;
+}
+.kakikukeko {
+  width: 80px;
+  display: flex;
+  align-items: center;
+}
+.sashisuseso {
+  height: 150px;
+}
 </style>
-
