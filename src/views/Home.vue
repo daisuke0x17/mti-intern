@@ -222,67 +222,52 @@ h3 {
               </div>
               <div>
                 <h3 class="white">ルームに参加</h3>
-                <p class="white">
-                  教えてもらった<br />
-                  ルームIDから参加する
-                </p>
+                <p class="white">教えてもらった<br>
+                  ルームIDから参加する</p>
+        </div>
+      <!--ここから北松がmodalの処理を書きました。-->
+      <modal name="hello-world" :draggable="true" :resizable="true">
+        <div class="modal-header">
+          <h2>はじめますか</h2>
+        </div>
+        <div class="modal-body">
+          <form class="ui large form" v-on:submit="submit">
+            <div class="field">
+              <div class="ui input">
+                <div>作業時間</div>
+                <select v-model="selectMinute">
+                  <option disabled value=""></option>
+                  <option v-for="minute in workMinute" :value="minute.work" :key="minute.minute">
+                    {{minute.work}}
+                    <!--{{minute.minute}}時間の分数-->
+                  </option>
+                </select>
               </div>
             </div>
-          </div>
+            <div class="field">
+              <div class="ui input">
+                <div>休憩時間</div>
+                <select v-model="selectMinute">
+                  <option disabled value=""></option>
+                  <option v-for="minute in restMinute" :value="minute.rest" :key="minute.minute">
+                    {{minute.rest}}
+                  </option>
+                </select>
+              </div>
+            </div>
+            <li v-if="err" class="err-msg">{{err}}</li>
+            <div class="fields">
+              <div class="field">
+                <button class="ui button" v-on:click="hide">閉じる</button>
+              </div>
+              <div class="field">
+                <button class="ui button" @click="gotoRoom" type="submit">はじめる</button>
+              </div>
+            </div>
+          </form>
         </div>
-        <!--ここから北松がmodalの処理を書きました。-->
-        <modal name="hello-world" :draggable="true" :resizable="true">
-          <div class="modal-header">
-            <h2>はじめますか</h2>
-          </div>
-          <div class="modal-body">
-            <form class="ui large form" v-on:submit="submit">
-              <div class="field">
-                <div class="ui input">
-                  <div>作業時間</div>
-                  <select v-model="selectMinute">
-                    <option disabled value=""></option>
-                    <option
-                      v-for="minute in workMinute"
-                      :value="minute.work"
-                      :key="minute.minute"
-                    >
-                      {{ minute.work }}
-                      <!--{{minute.minute}}時間の分数-->
-                    </option>
-                  </select>
-                </div>
-              </div>
-              <div class="field">
-                <div class="ui input">
-                  <div>休憩時間</div>
-                  <select v-model="selectMinute">
-                    <option disabled value=""></option>
-                    <option
-                      v-for="minute in restMinute"
-                      :value="minute.rest"
-                      :key="minute.minute"
-                    >
-                      {{ minute.rest }}
-                    </option>
-                  </select>
-                </div>
-              </div>
-              <li v-if="err" class="err-msg">{{ err }}</li>
-              <div class="fields">
-                <div class="field">
-                  <button class="ui button" v-on:click="hide">閉じる</button>
-                </div>
-                <div class="field">
-                  <button class="ui button" @click="gotoRoom" type="submit">
-                    はじめる
-                  </button>
-                </div>
-              </div>
-            </form>
-          </div>
-        </modal>
-        <!--ここまで北松-->
+      </modal>
+      <!--ここまで北松-->
         <div class="ui green button" v-on:click="choise">
           <div class="ui header">
             <i class="user outline icon"></i>
